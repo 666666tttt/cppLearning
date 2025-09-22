@@ -17,5 +17,5 @@ public:
 #endif // MEMBER_WISE
     bool operator==(const StanfordID& other) const;
     bool operator!=(const StanfordID& other) const;
-    friend bool operator<(const StanfordID& lhs, const StanfordID& rhs);
+    friend bool operator<(const StanfordID& lhs, const StanfordID& rhs);    // 友元，对于非成员重载，使得可以访问私有成员变量
 };

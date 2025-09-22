@@ -1,5 +1,6 @@
 #include <format>
 #include "class.h"
+
 // 构造函数定义
 // book::book(int id_, std::string name_, std::string author_, std::string publisher_, std::string ISBN_) {
 //     this->id = id_;
