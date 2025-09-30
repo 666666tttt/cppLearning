@@ -111,6 +111,5 @@ main(int argc, char* argv[])
     return 0;
   }
   
-  
   return run_autograder();
 }
