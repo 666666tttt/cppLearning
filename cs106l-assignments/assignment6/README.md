@@ -172,3 +172,11 @@ Your deliverable should be:
 - `main.cpp`
 
 You may resubmit as many times as you'd like before the deadline.
+
+注意：g++12以下的版本不支持and_then，建议升级到g++-12
+
+```bash
+sudo apt update
+sudo apt install g++-12  # 安装 GCC 12
+g++-12 -std=c++23 main.cpp -o main  # 使用 g++-12
+```

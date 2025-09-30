@@ -52,16 +52,17 @@ public:
    * @param course_title The title of the course to find.
    * @return You will need to figure this out!
    */
-  std::optional<FillMeIn> find_course(std::string course_title)
+  std::optional<Course> find_course(std::string course_title)
   {
     /* STUDENT_TODO: Implement this method! You will need to change the return
      * type. */
-    for (auto& course : courses) {
-      if (course.title == course_title) {
-        return &course;
-      }
+    auto course = std::ranges::find_if(courses, 
+      [&course_title](const Course &c) {return c.title == course_title;});
+    if (course == courses.end()) {
+      return std::nullopt;
+    } else {
+      return *course;
     }
-    return {};
   }
 
 private:
@@ -87,15 +88,20 @@ main(int argc, char* argv[])
     Please pay special attention to the README here
     ********************************************************/
 
-    std::string output = *course
-    .and_then([](FillMeIn f) {
-      std::optional<std::string> ans = "Found course: " + f->title + "," + f->number_of_units + "," + f->quarter + "\n";
-      return ans;
+    std::string output = course
+    // and_then需要自己显示定义std::optional函数，而transform不用（transform会自动包装），与.tranform模块等价
+    // .and_then([](const Course &c) {
+    //   std::optional<std::string> ans = "Found course: " + c.title + "," + c.number_of_units + "," + c.quarter + "\n";
+    //   return ans;
+    // })
+    .transform([](const Course &c) {
+        return "Found course: " + c.title + "," + c.number_of_units + "," + c.quarter + "\n";
     })
     .or_else([]() {
       std::optional<std::string> ans = "Course not found.\n";
       return ans;
-    });
+    })
+    .value();
 
     /********************************************************
      DO NOT MODIFY ANYTHING BELOW THIS LINE PLEASE
