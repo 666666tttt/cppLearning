@@ -110,7 +110,6 @@ main(int argc, char* argv[])
     std::cout << output << std::endl;
     return 0;
   }
-  
-  
+
   return run_autograder();
 }
