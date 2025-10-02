@@ -102,27 +102,13 @@ public:
 
   unique_ptr& operator=(const unique_ptr& other) = delete;
 
-  /*
-  移动构造：
-  先把ptr指向other的ptr（首先将当前对象的ptr指向other所管理的资源）;
-  再把other的ptr置为空，确保原对象不再拥有资源
-  这种设计体现了unique_ptr的 "唯一所有权" 特性
-  */ 
+  // ！
   unique_ptr(unique_ptr&& other) {
     ptr = other.ptr;
     other.ptr = nullptr;
   }
   
-  /*
-  移动赋值：
-  先排除自我赋值的情况：
-    删除原有资源；将当前对象的ptr指向other所管理的资源；
-    把other的ptr置空，确保原对象不再拥有资源
-  返回时为什么返回*this而不是this？
-  赋值运算符的返回类型是 unique_ptr&（当前对象的引用），
-  而 this 是指针类型（unique_ptr*）。返回 *this 才能得到与返回类型匹配的 “对象引用”，
-  而返回 this 会导致类型不匹配（指针无法隐式转换为引用）。
-  */
+  // ！
   unique_ptr& operator=(unique_ptr&& other) {
     if (this != &other) {
       delete ptr;
@@ -133,7 +119,6 @@ public:
   }
 };
 
-// main.cpp会用到！
 /**
  * @brief Creates a new unique_ptr for a type with the given arguments.
  * @example auto ptr = make_unique<int>(5);
