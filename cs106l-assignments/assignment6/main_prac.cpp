@@ -52,12 +52,16 @@ public:
    * @param course_title The title of the course to find.
    * @return You will need to figure this out!
    */
-  FillMeIn find_course(std::string course_title)
+  std::optional<Course> find_course(std::string course_title)
   {
     /* STUDENT_TODO: Implement this method! You will need to change the return
      * type. */
-
-
+    for (const auto& course : courses) {
+      if (course.title == course_title) {
+        return course;
+      }
+    }
+    return std::nullopt;
   }
 
 private:
@@ -82,6 +86,18 @@ main(int argc, char* argv[])
     STUDENT_TODO: Populate the output string with the right information to print
     Please pay special attention to the README here
     ********************************************************/
+    std::string output = course
+      .transform([](const Course &course){
+        return "Found course: " + course.title + "," + course.number_of_units + "," + course.quarter + "\n";
+      })
+      .or_else([](){
+        std::optional<std::string> ans = "Course not found.\n";
+        return ans;
+        // ！如果这样直接返回，会被默认为const char*类型，而不是string类型
+        // return "Course not found.\n";
+      })
+      .value();
+
 
     /********************************************************
      DO NOT MODIFY ANYTHING BELOW THIS LINE PLEASE

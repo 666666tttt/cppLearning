@@ -56,6 +56,8 @@ public:
   {
     /* STUDENT_TODO: Implement this method! You will need to change the return
      * type. */
+    // 此时course是迭代器，是指向Course类型的指针，而find_course的返回类型为
+    // std::optional<Course>，不是std::optional<Course*>，所以要对其解引用
     auto course = std::ranges::find_if(courses, 
       [&course_title](const Course &c) {return c.title == course_title;});
     if (course == courses.end()) {
