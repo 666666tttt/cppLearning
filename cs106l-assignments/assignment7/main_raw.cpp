@@ -9,7 +9,7 @@
 #include <unordered_map>
 #include <vector>
 
-#include "unique_ptr_prac.h"
+#include "unique_ptr.h"
 
 /**
  * @brief A singly-linked list node that deallocates itself automatically
@@ -52,14 +52,7 @@ template <typename T> struct ListNode {
  */
 template <typename T> cs106l::unique_ptr<ListNode<T>> create_list(const std::vector<T>& values) {
   /* STUDENT TODO: Implement this method */
-  cs106l::unique_ptr<ListNode<T>> head = nullptr;
-  int values_size = values.size();
-  for (int i = values_size - 1; i >= 0; --i) {
-    cs106l::unique_ptr<ListNode<T>> node = cs106l::make_unique<ListNode<T>> (values[i]);
-    node->next = std::move(head);
-    head = std::move(node);
-  }
-  return head;
+  throw std::runtime_error("Not implemented: createList");
 }
 
 /**
