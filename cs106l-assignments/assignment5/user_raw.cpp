@@ -1,4 +1,4 @@
-#include "user.h"
+#include "user_raw.h"
 
 /**
  * Creates a new User with the given name and no friends.

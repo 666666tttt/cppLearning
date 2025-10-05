@@ -140,3 +140,5 @@ Your deliverable should be:
 - `user.cpp`
 
 You may resubmit as many times as you'd like before the deadline.
+
+注意：生成的可执行文件必须命名为main，因为判题器只默认识别名称为main的文件。

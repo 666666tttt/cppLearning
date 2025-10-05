@@ -19,14 +19,14 @@ public:
    * STUDENT TODO:
    * Your custom operators and special member functions will go here!
    */
-  friend std::ostream& operator<< (std::ostream& os, const User& user);   // 友元运算符<<重载函数声明（非成员重载）
-  ~User();                                      // 析构函数声明
-  User(const User& user);                       // 拷贝构造函数声明
-  User& operator=(const User& user);            // 拷贝赋值函数声明
-  User(User&& user) = delete;                   // 禁用移动构造函数
-  User& operator=(User&& user) = delete;        // 禁用移动赋值函数
-  User& operator+= (User& other);               // 运算符+=重载函数声明（成员重载）
-  bool operator< (const User& other) const;     // 运算符<重载函数声明（成员重载）
+  friend std::ostream& operator<<(std::ostream& os, const User& user);
+  ~User();
+  User(const User& user);
+  User& operator=(const User& user);
+  User(User&& user) = delete;
+  User& operator=(User&& user) = delete;
+  User& operator+=(User& rhs);
+  bool operator<(const User& rhs) const;
 
 private:
   std::string _name;
