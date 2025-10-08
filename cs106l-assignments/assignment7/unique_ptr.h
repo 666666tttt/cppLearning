@@ -141,6 +141,8 @@ public:
  * @tparam Args The types of the arguments to pass to the constructor of T.
  * @param args The arguments to pass to the constructor of T.
  */
+
+// 完美转发std::forward()
 template <typename T, typename... Args> 
 unique_ptr<T> make_unique(Args&&... args) {
   return unique_ptr<T>(new T(std::forward<Args>(args)...));
